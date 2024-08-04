@@ -3,6 +3,46 @@ import Link from "next/link";
 import { LatestPost } from "@/app/_components/post";
 import { getServerAuthSession } from "@/server/auth";
 import { api, HydrateClient } from "@/trpc/server";
+import { Separator } from "@/components/ui/separator";
+
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import { cn } from "@/lib/utils";
+
+const navItems: {
+  title: string;
+  path: string;
+}[] = [
+  {
+    title: "Home",
+    path: "/",
+  },
+  {
+    title: "Community",
+    path: "/community",
+  },
+];
+
+/* 
+<body>
+<header>
+<main>
+<footer>
+*/
 
 export default async function Home() {
   const hello = await api.post.hello({ text: "from tRPC" });
@@ -12,8 +52,83 @@ export default async function Home() {
 
   return (
     <HydrateClient>
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-        <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+      <header>
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              {navItems.map((navItem) => {
+                return (
+                  <Link
+                    href={navItem.path}
+                    legacyBehavior
+                    passHref
+                    key={navItem.path}
+                  >
+                    <NavigationMenuLink
+                      className={cn(navigationMenuTriggerStyle())}
+                    >
+                      {navItem.title}
+                    </NavigationMenuLink>
+                  </Link>
+                );
+              })}
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        <Separator />
+      </header>
+      <main>
+        <div className="grid grid-cols-2 gap-4 xl:grid-cols-4 m-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Card Title</CardTitle>
+              <CardDescription>Card Description</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Card Content</p>
+            </CardContent>
+            <CardFooter>
+              <p>Card Footer</p>
+            </CardFooter>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Card Title</CardTitle>
+              <CardDescription>Card Description</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Card Content</p>
+            </CardContent>
+            <CardFooter>
+              <p>Card Footer</p>
+            </CardFooter>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Card Title</CardTitle>
+              <CardDescription>Card Description</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Card Content</p>
+            </CardContent>
+            <CardFooter>
+              <p>Card Footer</p>
+            </CardFooter>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Card Title</CardTitle>
+              <CardDescription>Card Description</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Card Content</p>
+            </CardContent>
+            <CardFooter>
+              <p>Card Footer</p>
+            </CardFooter>
+          </Card>
+        </div>
+        <div className="container flex flex-col items-center justify-center">
           <h1 className="text-5xl font-extrabold tracking-tight sm:text-[5rem]">
             Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
           </h1>
@@ -45,7 +160,6 @@ export default async function Home() {
             <p className="text-2xl text-white">
               {hello ? hello.greeting : "Loading tRPC query..."}
             </p>
-
             <div className="flex flex-col items-center justify-center gap-4">
               <p className="text-center text-2xl text-white">
                 {session && <span>Logged in as {session.user?.name}</span>}
@@ -62,6 +176,7 @@ export default async function Home() {
           {session?.user && <LatestPost />}
         </div>
       </main>
+      <footer className="mt-auto">created by Buntin-LArchel</footer>
     </HydrateClient>
   );
 }
