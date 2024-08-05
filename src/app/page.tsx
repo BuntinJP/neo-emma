@@ -77,11 +77,22 @@ export default async function Home() {
         </NavigationMenu>
         <Separator />
       </header>
-      <main>
-        <div className='grid grid-cols-2 gap-4 xl:grid-cols-4 m-4'>
+      <main className='grow'>
+        <div
+          className={cn(
+            'md:grid-cols-3',
+            'xl:grid-cols-4',
+            '2xl:grid-cols-5',
+            'grid',
+            'grid-cols-2',
+            'gap-3',
+            'm-4',
+            'grow'
+          )}
+        >
           <Card>
             <CardHeader>
-              <CardTitle>Card Title</CardTitle>
+              <CardTitle>111</CardTitle>
               <CardDescription>Card Description</CardDescription>
             </CardHeader>
             <CardContent>
@@ -93,7 +104,7 @@ export default async function Home() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Card Title</CardTitle>
+              <CardTitle>222</CardTitle>
               <CardDescription>Card Description</CardDescription>
             </CardHeader>
             <CardContent>
@@ -105,7 +116,7 @@ export default async function Home() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Card Title</CardTitle>
+              <CardTitle>333</CardTitle>
               <CardDescription>Card Description</CardDescription>
             </CardHeader>
             <CardContent>
@@ -115,9 +126,21 @@ export default async function Home() {
               <p>Card Footer</p>
             </CardFooter>
           </Card>
-          <Card>
+          <Card className='xl:block hidden'>
             <CardHeader>
-              <CardTitle>Card Title</CardTitle>
+              <CardTitle>444</CardTitle>
+              <CardDescription>Card Description</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p>Card Content</p>
+            </CardContent>
+            <CardFooter>
+              <p>Card Footer</p>
+            </CardFooter>
+          </Card>
+          <Card className='2xl:block hidden'>
+            <CardHeader>
+              <CardTitle>555</CardTitle>
               <CardDescription>Card Description</CardDescription>
             </CardHeader>
             <CardContent>
@@ -128,7 +151,7 @@ export default async function Home() {
             </CardFooter>
           </Card>
         </div>
-        <div className='container flex flex-col items-center justify-center'>
+        {/* <div className='container flex flex-col items-center justify-center'>
           <h1 className='text-5xl font-extrabold tracking-tight sm:text-[5rem]'>
             Create <span className='text-[hsl(280,100%,70%)]'>T3</span> App
           </h1>
@@ -174,9 +197,9 @@ export default async function Home() {
           </div>
 
           {session?.user && <LatestPost />}
-        </div>
+        </div> */}
       </main>
-      <footer className='mt-auto'>created by Buntin-LArchel</footer>
+      <footer>created by Buntin-LArchel</footer>
     </HydrateClient>
   );
 }

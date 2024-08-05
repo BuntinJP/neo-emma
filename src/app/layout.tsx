@@ -17,16 +17,16 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang='en' className={`${GeistSans.variable}`}>
-      <ThemeProvider
-        attribute='class'
-        defaultTheme='dark'
-        enableSystem
-        disableTransitionOnChange
-      >
-        <TRPCReactProvider>
-          <body className='flex min-h-dvh flex-col'>{children}</body>
-        </TRPCReactProvider>
-      </ThemeProvider>
+      <body className='flex min-h-dvh flex-col'>
+        <ThemeProvider
+          attribute='class'
+          defaultTheme='dark'
+          enableSystem
+          disableTransitionOnChange
+        >
+          <TRPCReactProvider>{children}</TRPCReactProvider>
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
