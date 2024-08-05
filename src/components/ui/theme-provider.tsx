@@ -6,4 +6,3 @@ import type { ThemeProviderProps } from "next-themes/dist/types";
 export const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => (
   <NextThemesProvider {...props}>{children}</NextThemesProvider>
 );
-
